@@ -1,0 +1,30 @@
+.legend {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-around;
+
+  h3 {
+    margin: 0 0 10px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+
+    .color-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      margin-right: 10px;
+    }
+
+    .category-name {
+      font-size: 14px;
+    }
+  }
+}

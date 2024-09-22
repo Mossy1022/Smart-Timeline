@@ -1,0 +1,58 @@
+<!-- category-management.component.html -->
+<div class="category-management">
+    <h2>Manage Categories</h2>
+  
+    <!-- Category Form -->
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
+      <mat-form-field appearance="fill">
+        <mat-label>Category Name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Color -->
+      <mat-form-field appearance="fill">
+        <mat-label>Color</mat-label>
+        <input matInput formControlName="color" type="color" />
+      </mat-form-field>
+  
+      <!-- Icon URL -->
+      <mat-form-field appearance="fill">
+        <mat-label>Icon URL</mat-label>
+        <input matInput formControlName="icon" />
+      </mat-form-field>
+  
+      <!-- Submit Button -->
+      <button mat-raised-button color="primary" type="submit" [disabled]="!categoryForm.valid">
+        {{ editingCategory ? 'Update Category' : 'Add Category' }}
+      </button>
+  
+      <!-- Cancel Edit Button -->
+      <button *ngIf="editingCategory" mat-button type="button" (click)="onCancelEdit()">
+        Cancel
+      </button>
+    </form>
+  
+    <!-- Category List -->
+    <mat-divider></mat-divider>
+    <div class="category-list">
+      <h3>Existing Categories</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let category of categories">
+          <div mat-line>
+            <span class="category-color" [style.background-color]="category.color"></span>
+            {{ category.name }}
+          </div>
+          <button mat-icon-button (click)="onEdit(category)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDelete(category)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>

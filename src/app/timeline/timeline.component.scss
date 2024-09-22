@@ -1,0 +1,39 @@
+:host{
+    width: 100%;
+    height: 100%;
+    top: 65px;
+    left: 14px;
+    position: absolute;
+}
+
+.timeline-container {
+    width: 100%;
+    height: 72%; /* Adjust the height as needed */
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    position: relative;
+
+    .vis-item {
+        height: 100px; /* Set a fixed height for timeline items */
+        padding: 10px; /* Add padding for spacing */
+        display: flex; /* Use flexbox for alignment */
+        align-items: center; /* Center items vertically */
+    }
+
+    .vis-item img {
+        width: auto; /* Maintain aspect ratio */
+        height: 80px; /* Set a fixed height for images */
+        margin-right: 10px; /* Space between image and text */
+    }
+  }
+
+  .memory-label {
+    font-size: 35px;
+  }
+
+  .vis-item img {
+    width: auto; /* Maintain aspect ratio */
+    height: 100% !important; /* Set height to fill the item */
+    max-height: 80px !important; /* Set a maximum height for images */
+    margin-right: 10px; /* Space between image and text */
+}

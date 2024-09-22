@@ -1,0 +1,7 @@
+<div class="legend">
+  <h3>Color Legend</h3>
+  <div *ngFor="let category of categories" class="legend-item">
+    <span class="color-box" [style.backgroundColor]="category.color"></span>
+    <span class="category-name">{{ category.name }}</span>
+  </div>
+</div>

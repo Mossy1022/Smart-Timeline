@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~vis-timeline/styles/vis-timeline-graph2d.min.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.vis-item {
+    border-left: 1px !important;
+    border-right: 1px !important;
+    border-top: 1px !important;
+    background-color: transparent !important;
+    cursor: pointer;
+    border-radius: 6px !important;
+    .vis-item-content {
+        height: -webkit-fill-available;
+        margin-top: 5px;
+        cursor: pointer;
+
+        div {
+            height: -webkit-fill-available;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            img {
+                height: 88%;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .vis-item-overflow {
+        display: flex;
+        justify-content: center;
+        overflow: visible !important;
+        align-items: center;
+        text-align: center;
+    }
+}   

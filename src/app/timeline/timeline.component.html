@@ -1,0 +1,11 @@
+<!-- timeline.component.html -->
+<app-legend></app-legend> <!-- Ensure this is correctly placed -->
+<div class="settings-box">
+  <h3>Settings</h3>
+  <label>
+    <input type="checkbox" [(ngModel)]="showImages" (change)="toggleImages()" />
+    Show Images on Timeline
+  </label>
+</div>
+<div #timeline class="timeline-container">
+</div>

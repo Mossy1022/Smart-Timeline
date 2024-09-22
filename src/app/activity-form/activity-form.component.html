@@ -1,0 +1,109 @@
+<!-- activity-form.component.html -->
+<form [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required />
+      <mat-error *ngIf="activityForm.get('title')?.hasError('required')">
+        Title is required
+      </mat-error>
+    </mat-form-field>
+  
+    <!-- Start Date -->
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" required />
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+      <mat-error *ngIf="activityForm.get('startDate')?.hasError('required')">
+        Start Date is required
+      </mat-error>
+    </mat-form-field>
+  
+    <!-- End Date -->
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" required />
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+      <mat-error *ngIf="activityForm.get('endDate')?.hasError('required')">
+        End Date is required
+      </mat-error>
+    </mat-form-field>
+  
+    <!-- Description -->
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+  
+    <!-- Perspective -->
+    <div formGroupName="perspective" class="perspective-section">
+      <h3>Perspective</h3>
+  
+      <!-- Emotions -->
+      <mat-form-field appearance="fill">
+        <mat-label>Emotions</mat-label>
+        <mat-select formControlName="emotions" multiple>
+          <mat-option *ngFor="let emotion of emotions" [value]="emotion">
+            {{ emotion.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Thoughts -->
+      <mat-form-field appearance="fill">
+        <mat-label>Thoughts</mat-label>
+        <textarea matInput formControlName="thoughts"></textarea>
+      </mat-form-field>
+  
+      <!-- Physical States -->
+      <mat-form-field appearance="fill">
+        <mat-label>Physical States</mat-label>
+        <mat-select formControlName="physicalStates" multiple>
+          <mat-option *ngFor="let state of physicalStatesList" [value]="state">
+            {{ state }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Sensory Details -->
+      <mat-form-field appearance="fill">
+        <mat-label>Sensory Details</mat-label>
+        <textarea matInput formControlName="sensoryDetails"></textarea>
+      </mat-form-field>
+  
+      <!-- Contextual Factors -->
+      <mat-form-field appearance="fill">
+        <mat-label>Contextual Factors</mat-label>
+        <textarea matInput formControlName="contextualFactors"></textarea>
+      </mat-form-field>
+  
+      <!-- Attitudes and Beliefs -->
+      <mat-form-field appearance="fill">
+        <mat-label>Attitudes and Beliefs</mat-label>
+        <textarea matInput formControlName="attitudesBeliefs"></textarea>
+      </mat-form-field>
+    </div>
+  
+    <!-- Categories -->
+    <mat-form-field appearance="fill">
+      <mat-label>Categories</mat-label>
+      <mat-select formControlName="categoryIds" multiple>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <!-- Image URL -->
+    <mat-form-field appearance="fill">
+      <mat-label>Image URL</mat-label>
+      <input matInput formControlName="imageUrl" />
+    </mat-form-field>
+  
+    <!-- Submit Button -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="!activityForm.valid">
+      Save Activity
+    </button>
+  </form>
