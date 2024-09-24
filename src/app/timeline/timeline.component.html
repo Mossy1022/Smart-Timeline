@@ -1,11 +1,22 @@
 <!-- timeline.component.html -->
-<app-legend></app-legend> <!-- Ensure this is correctly placed -->
-<div class="settings-box">
-  <h3>Settings</h3>
-  <label>
-    <input type="checkbox" [(ngModel)]="showImages" (change)="toggleImages()" />
-    Show Images on Timeline
-  </label>
-</div>
+<app-legend></app-legend> 
+
+<app-settings></app-settings>
+
 <div #timeline class="timeline-container">
+</div>
+
+<div class="search-container">
+  <button class="clear-button" mat-button color="warn" (click)="clearHighlights()">Clear</button> <!-- Clear button -->
+  
+  <mat-form-field appearance="fill" class="search-bar">
+    <mat-label>What insights would you like to know?</mat-label>
+    <input matInput [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" placeholder="Enter your query">
+  </mat-form-field>
+  
+  <button class="search-button" mat-raised-button color="primary" (click)="onSearch()">Ask</button>
+  
+  <div class="description-container">
+    <p *ngIf="description">{{ description }}</p>
+  </div>
 </div>

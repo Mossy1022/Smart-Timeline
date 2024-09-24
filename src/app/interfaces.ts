@@ -22,8 +22,8 @@ export interface Perspective {
 export interface Category {
     id: string;
     name: string;
-    color?: string;       // Color for visual representation
-    icon?: string;        // Icon for display purposes
+    color: string;       // Color for visual representation
+    icon?: string;        // Optional icon for display purposes
   }
 
 // memory.ts
@@ -36,6 +36,8 @@ export interface Memory {
     perspective?: Perspective;
     categoryIds?: string[];
     imageUrl?: string;
+    startDate?: Date;
+    endDate?: Date;
   }
 
 // activity.ts
@@ -50,3 +52,30 @@ export interface Activity {
     color?: string;
     imageUrl?: string;
   }
+
+// FacebookAlbum interface
+export interface FacebookAlbum {
+    id: string;
+    name: string;
+    description?: string;
+    cover_photo?: string;
+    created_time: string;
+}
+
+// FacebookPhoto interface
+export interface FacebookPhoto {
+    id: string;
+    album_id: string;
+    image_url: string;
+    description?: string;
+    timestamp: string;
+}
+
+// FacebookPost interface
+export interface FacebookPost {
+    id: string;
+    message?: string;
+    created_time: string;
+    attachments?: FacebookPhoto[];
+    album?: FacebookAlbum;
+}

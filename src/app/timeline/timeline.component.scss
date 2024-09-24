@@ -8,16 +8,16 @@
 
 .timeline-container {
     width: 100%;
-    height: 72%; /* Adjust the height as needed */
+    height: 78%; /* Adjust the height as needed */
     border: 1px solid #ddd;
     box-sizing: border-box;
     position: relative;
 
     .vis-item {
-        height: 100px; /* Set a fixed height for timeline items */
         padding: 10px; /* Add padding for spacing */
         display: flex; /* Use flexbox for alignment */
         align-items: center; /* Center items vertically */
+        transition: height 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
     }
 
     .vis-item img {
@@ -25,15 +25,63 @@
         height: 80px; /* Set a fixed height for images */
         margin-right: 10px; /* Space between image and text */
     }
-  }
 
-  .memory-label {
-    font-size: 35px;
-  }
+    .memory-label {
+        font-size: 35px;
+    }
+}
 
-  .vis-item img {
+.vis-item img {
     width: auto; /* Maintain aspect ratio */
     height: 100% !important; /* Set height to fill the item */
     max-height: 80px !important; /* Set a maximum height for images */
     margin-right: 10px; /* Space between image and text */
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+
+    .clear-button {
+        margin-right: 10px; /* Space between Clear and Search bar */
+        margin-top: -15px;
+    }
+
+    .search-bar {
+        width: 410px;
+        margin-right: 10px;
+    }
+
+    .search-button {
+        margin-right: 10px; /* Space between Search button and Description */
+        margin-top: -15px;
+    }ß
+
+    .description-container {
+        flex: 1; /* Take up remaining space */
+        min-width: 200px; /* Ensure a minimum width */
+        margin-left: 10px;
+        
+        p {
+            white-space: pre-wrap; /* Allow text wrapping */
+            word-wrap: break-word;
+            margin: 0;
+        }
+    }
+}
+
+.vis-item.facebook-item {
+    background-color: #4267B2; /* Facebook Blue */
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    /* Additional styles as needed */
+}
+
+.vis-item.facebook-item p {
+    font-size: 16px;
+    margin: 0;
 }

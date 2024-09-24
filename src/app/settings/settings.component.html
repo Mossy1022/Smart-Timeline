@@ -1,7 +1,34 @@
 <div class="settings-box">
   <h3>Settings</h3>
-  <label>
-    <input type="checkbox" [(ngModel)]="showImages" (change)="toggleImages($event)" />
-    Show Images on Timeline
-  </label>
+  
+  <!-- Toggle for Show/Hide Images -->
+  <mat-slide-toggle [(ngModel)]="showImages" (change)="toggleImages()">
+    Show Images
+  </mat-slide-toggle>
+
+  <button mat-raised-button color="primary" (click)="loginWithFacebook()">
+    <i class="fab fa-facebook-f"></i> Log in with Facebook
+  </button>
+
+  <!-- Add a logout button -->
+  <button mat-raised-button color="warn" (click)="logoutFromFacebook()" *ngIf="userProfile">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+
+  <!-- Display User Profile Information -->
+  <div *ngIf="userProfile" class="user-profile">
+    <img [src]="userProfile.picture.data.url" alt="User Picture">
+    <p>Name: {{ userProfile.name }}</p>
+    <p>Email: {{ userProfile.email }}</p>
+  </div>
+
+  <!-- Category Filter using Mat-Select Multi-Select -->
+  <mat-form-field appearance="fill">
+    <mat-label>Filter Categories</mat-label>
+    <mat-select multiple [(ngModel)]="selectedCategories" (selectionChange)="onCategorySelectionChange($event)">
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>

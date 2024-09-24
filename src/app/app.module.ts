@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule and ReactiveFormsModule
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,7 @@ import { ActivityFormComponent } from './activity-form/activity-form.component';
 import { MemoryFormComponent } from './memory-form/memory-form.component';
 import { CategoryManagementComponent } from './category-management/category-management.component';
 import { LegendComponent } from './legend/legend.component';
-import { SettingsComponent } from './settings/settings.component'; // Import SettingsComponent
+import { SettingsComponent } from './settings/settings.component';
 
 import { VisModule } from 'ngx-vis';
 
@@ -33,7 +33,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';  
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http'; // Add this import
+
+// Import Social Login Modules
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { FacebookLoginProvider } from 'angularx-social-login';
+import { environment } from '../environments/environment'; // ✅ Added this import
 
 @NgModule({
   declarations: [
@@ -43,15 +49,17 @@ import { ReactiveFormsModule } from '@angular/forms';
     MemoryFormComponent,
     CategoryManagementComponent,
     LegendComponent,
-    SettingsComponent // Add SettingsComponent here
+    SettingsComponent // Ensure SettingsComponent is declared
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule, // Add FormsModule here
+    FormsModule,
+    HttpClientModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
@@ -60,7 +68,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule,
     MatCardModule,
     MatTabsModule,
     MatTableModule,
@@ -69,9 +76,28 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule,
     MatRadioModule,
     MatSliderModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(
+              environment.facebookAppId // Use the Facebook App ID from environment
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
